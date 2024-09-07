@@ -1,4 +1,5 @@
 import tkinter as tk
+from db import conn, cur
 
 class App(tk.Tk):
     def __init__(self):
@@ -22,17 +23,22 @@ class App(tk.Tk):
 
     def login(self):
         s1, s2 = (self.en.get(), self.en2.get())
-        if s1 == 'admin' and s2 == 'admin':
-            wn = tk.Toplevel(self)
-
-            l = tk.Label(wn, text="Bem-Vindo").pack()
-            wn.title("Nova Janela")
-            wn.geometry("300x250")
+        res = cur.execute('SELECT login, senha FROM admin WHERE login=? AND senha=?', (s1, s2))
+        if res.fetchone() is None:
+            pass
         else:
-            wn = tk.Toplevel(self)
-            l = tk.Label(wn, text="Acesso Negado", ).pack()
-            wn.title("Negado")
-            wn.geometry("300x300")
+            login, senha = res.fetchone()
+        
+            if s1 == login and s2 == senha:
+                wn = tk.Toplevel(self)
+                l = tk.Label(wn, text="Bem-Vindo").pack()
+                wn.title("Nova Janela")
+                wn.geometry("300x250")
+            else:
+                wn = tk.Toplevel(self)
+                l = tk.Label(wn, text="Acesso Negado", ).pack()
+                wn.title("Negado")
+                wn.geometry("300x300")
 
 if __name__ == '__main__':
     app = App()
