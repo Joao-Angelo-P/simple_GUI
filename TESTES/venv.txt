@@ -1,0 +1,46 @@
+# 0 "/mnt/d/1_2025_ubuntu/fevereiro/18/tutorial.txt"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "/mnt/d/1_2025_ubuntu/fevereiro/18/tutorial.txt"
+Configurar Variaveis Ambientais: usuario e senha
+
+Vamos criar um diretorio virtualenv com nome de ".venv", pode ser outro nome:
+>python3 -m venve .venv
+
+Criar variaveis "usuario" e "senha" e quando desativar o ambiente virtual, elas vao se sumir
+>nano .venv/bin/activate
+
+Abaixo \U000000e9 um exemplo onde se pode colocar a declara\U000000e7\U000000e3o das variaveis
+...
+Virtual_ENV=".venv"
+usuario="admin"
+senha="admin"
+export Virtual_ENV
+export usuario
+export senha
+...
+
+Para quando usar o deactivate e sumir com as variavies, insira na fun\U000000e7\U000000e3o deactivate()
+
+...
+deactivate (){
+...
+
+unset Virtual_ENV
+unset usuario senha
+...
+}
+
+Salve as modifica\U000000e7\U000000f5es e saia do "activate"
+
+Ative o ambiente virtual e rode o programa
+>source .venv/bin/activate
+>printenv (este comando mostra as variaveis configuradas. Vai encontrar "usuario" e "senha")
+>python3 teste.py
+
+Desative o ambinte virtual
+>deactivate
+>printenv (vai ver que as variaveis n\U000000e3o est\U000000e3o mais no sistema)
+>echo $usuario && echo $senha (confirmando que n\U000000e3o tem nada)
