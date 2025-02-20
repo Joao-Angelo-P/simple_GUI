@@ -1,4 +1,4 @@
-# Remake the code from "Tkinter-By-Example- To-Do LIST v1" second part
+# Remake the code from "Tkinter-By-Example- To-Do LIST v2" second part
 # https://github.com/Dvlv/Tkinter-By-Example/blob/master/Code/Chapter2-2.py
 
 from tkinter import *
