@@ -1,6 +1,5 @@
 import tkinter as tk
-from typing import Optional, Union
-
+from typing import Optional
 
 
 def inserir(top):
@@ -10,9 +9,10 @@ def inserir(top):
 def modificar(top):
     top.destroy()
     try:
-        x1 = [i  for i in root.winfo_children() if i.__class__.__name__=='Label']
-        #var = x1[index.get()]
-        x1[index.get()-1]["text"] = texto.get()
+        if int(index.get()):
+            x1 = [i  for i in root.winfo_children() if i.__class__.__name__=='Label']
+            #var = x1[index.get()]
+            x1[index.get()-1]["text"] = texto.get()
 
     except IndexError:
         #print('Passou na exceção')
@@ -25,8 +25,10 @@ def modificar(top):
 def apagar(top):
     top.destroy()
     try:
-        x1 = [i  for i in root.winfo_children() if i.__class__.__name__=='Label']
-        x1[index.get()-1].destroy()
+        if int(index.get()):
+            x1 = [i  for i in root.winfo_children() if i.__class__.__name__=='Label']
+            x1[index.get()-1].destroy()
+            
     except IndexError:
         #print('Passou na exceção')
         top2 = tk.Toplevel()
