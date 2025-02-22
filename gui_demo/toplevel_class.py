@@ -44,16 +44,13 @@ class App(Toplevel):
                 top.protocol("WM_DELETE_WINDOW")
 
     def so(self):
-        if (resposta:=self.verificacao()):
+        if (resposta:= True if platform in ('linux', 'darwin') else False):
             self.widgets()
 
         else:
             Label(master=self, **{'text':'Seu Sistema Operacional é windows, \nfavor configurar as variaveis de ambiente\n "usuario" e "senha"'}, font='Verdana 18 bold').grid(row=0, column=0)
             Button(master=self, text="ok", command=self.widgets, width="5", font="bold 12").grid(row=1, column=0)
             self.geometry('600x200')
-
-    def verificacao(self):
-        return True if platform in ('linux', 'darwin') else False
 
 
 if __name__ == '__main__': 
