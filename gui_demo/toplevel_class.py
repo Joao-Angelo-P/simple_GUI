@@ -33,10 +33,15 @@ class App(Toplevel):
         self.master.title("Master")
 
     def validar(self):
-        if self.winfo_children()[1].get() == getenv("usuario") and self.winfo_children()[3].get() == getenv("senha"):
+        if self.winfo_children()[2].get() == getenv("usuario") and self.winfo_children()[3].get() == getenv("senha"):
             self.entrar()
+            
         else:
-            Label(master=self.master, text="Acesso Negado\nAperte no botao 'sair' pra fechar o sistema\nEssa é uma janela Toplevel.").pack()
+            if not [x for x in self.winfo_children() if x.winfo_class()=="Toplevel" ]:
+                top = Toplevel(self)
+                top.title('Acesso negado')
+                Label(master=top, text="Acesso Negado", font="Arial 15 bold").grid(row=3, column=1)
+                top.protocol("WM_DELETE_WINDOW")
 
     def so(self):
         if (resposta:=self.verificacao()):
