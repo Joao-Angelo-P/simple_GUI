@@ -2,6 +2,49 @@ import tkinter as tk
 from typing import Optional
 
 
+# implementar extração de dados e
+# apresentar como estar em baixo
+# Usando um match pattern para filtrar objeto
+
+data_ = [
+    ('Cereal SUCRILHOS', 'UN',12.99),
+    ('ACHOC. PRONTO TODDYNHO', 'UN',3.19),
+    ('ACHOC. PRONTO TODDYNHO', 'UN',3.19),
+    ('SALGADO FOLHADO DE QUEIJO', 'KG',41.90),
+    ('PAO DE QUEIJO', 'KG', 29.90),
+    ('PAO FRANCES', 'KG',9.99),
+    ('LEITE UHT INTEGRAL', 'UN', 7.69),
+    ('BOLO DE MARACUJÁ','KG', 34.90),
+    ('QUEIJO MUSSARELA', 'KG', 62.90),
+    ('MELAO AMARELO', 'KG', 9.99),
+    ('PAO BRIOCHE', 'KG', 17.90),
+    ('ABACAXI GRANDE', 'KG', 12.99),
+    ('Item inavalido exemplo', 'X', 2.33),
+    ]
+
+# Filtro com match stetement
+def itens_extraidos():
+    for j in [Item(*i) for i in data_]:
+        match j:
+            case Item(nome=nome, kg_ou_un='KG', unidade_valor=valor):
+                print(f'Este item tem quantidade pelo KILO\n{nome}\tR${valor:,}')
+
+            case Item(nome=nome, kg_ou_un='UN', unidade_valor=valor):
+                print(f'Este item tem quantidade pelo UNIDADE\n{nome}\tR${valor:,}')
+
+            case _:
+                print(f'Entrada Invalida')
+            
+
+class Item(NamedTuple):
+    nome:str
+    kg_ou_un:str
+    unidade_valor:float
+
+# Dados ja dentro da classe builder
+db_objects = [Item(*i) for i in data_]
+
+
 def inserir(top):
     top.destroy()
     tk.Label(master=root, text=f"---\t{texto.get()} {len(root.winfo_children())}\t---").pack()
@@ -73,8 +116,10 @@ root.title("Menu Tkinter")
 texto = tk.StringVar()
 index = tk.IntVar()
 menubar = tk.Menu(master=root)
-[tk.Label(master=root, text=f"---\tTexto Qualquer {i}\t---").pack() for i in range(1, 4, 1)]
 
+#[tk.Label(master=root, text=f"---\tTexto Qualquer {i}\t---").pack() for i in range(1, 4, 1)]
+tk.Label(master=root, text="Nome do Item\t|\tKG OU UN\t|\tValor").pack()
+[tk.Label(master=root, text=f"{j.nome}\t|\t{j.kg_ou_un}\t|\t{j.unidade_valor}").pack() for j in db_objects[:3]]
 
 
 # Menu "File"
