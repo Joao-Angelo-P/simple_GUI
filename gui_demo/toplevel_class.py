@@ -20,12 +20,12 @@ class App(Toplevel):
         Label(self, text="Senha:").grid(row=1, column=0)
         Entry(self).grid(row=0, column=1)
         Entry(self, show='*').grid(row=1, column=1)
-        Button(self, text="--Entrar--", command=self.sair).grid(row=2, column=1)
+        Button(self, text="--Entrar--", command=self.entrar).grid(row=2, column=1)
 
-    def sair(self, event=None):
+    def entrar(self, event=None):
         self.withdraw()
         if len(self.master.winfo_children()) == 1:
-            Label(master=self.master, text="Acesso Negado\nAperte no botao 'sair' pra fechar o sistema\nEssa é uma janela Toplevel.").pack()
+            Label(master=self.master, text=f"Acesso Liberado!\nUsuario:\t{getenv('usuario')}").pack()
             Button(master=self.master, text="Voltar",
                 command=lambda: [x() for x in (self.master.withdraw, self.deiconify)]).pack()
             
@@ -34,7 +34,9 @@ class App(Toplevel):
 
     def validar(self):
         if self.winfo_children()[1].get() == getenv("usuario") and self.winfo_children()[3].get() == getenv("senha"):
-            self.sair()
+            self.entrar()
+        else:
+            Label(master=self.master, text="Acesso Negado\nAperte no botao 'sair' pra fechar o sistema\nEssa é uma janela Toplevel.").pack()
 
     def so(self):
         if (resposta:=self.verificacao()):
