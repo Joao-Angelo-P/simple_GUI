@@ -54,6 +54,7 @@ class App(Toplevel): # nome vai ser "Login"
     def verificacao(self):
         return True if platform in ('linux', 'darwin') else False
 
-master = Tk()
-app = App(master)
-master.mainloop()
+if __name__ == '__main__': 
+    master = Tk()
+    app = App(master)
+    master.mainloop()
