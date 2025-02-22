@@ -11,6 +11,7 @@ class App(Toplevel):
         self.title("Janela")
         self.geometry("200x200")
         self.so()
+        self.protocol("WM_DELETE_WINDOW", lambda: self.master.destroy())
 
     def widgets(self):
         [x.destroy() for x in self.winfo_children()]
@@ -18,7 +19,7 @@ class App(Toplevel):
         Label(self, text="Usuario").grid(row=0, column=0)
         Label(self, text="Senha:").grid(row=1, column=0)
         Entry(self).grid(row=0, column=1)
-        Entry(self).grid(row=1, column=1)
+        Entry(self, show='*').grid(row=1, column=1)
         Button(self, text="--Entrar--", command=lambda:self.sair()).grid(row=2, column=1)
 
     def sair(self, event=None, var=False):
@@ -27,8 +28,6 @@ class App(Toplevel):
             Label(master=self.master, text="Acesso Negado\nAperte no botao 'sair' pra fechar o sistema\nEssa é uma janela Toplevel.").pack()
             Button(master=self.master, text="Voltar",
                 command=lambda: [x() for x in (self.master.withdraw, self.deiconify)]).pack()
-            Button(master=self.master, text="Destruir",
-                command=lambda: self.master.destroy()).pack()
             
         self.master.deiconify()
         self.master.title("Master")
