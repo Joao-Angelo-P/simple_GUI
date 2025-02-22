@@ -1,2 +1,2 @@
 # simple_GUI
-Simple GUI build in Python
+Projetos de prototipos de interface grafica com tkinter.
