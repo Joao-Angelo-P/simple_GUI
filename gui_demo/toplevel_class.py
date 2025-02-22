@@ -4,8 +4,8 @@ from os import getenv
 from sys import platform
 
 class App(Toplevel):    
-    def __init__(self, master=None, *rags, **kw):
-        super(App, self).__init__(master)
+    def __init__(self, master=None, *args, **kw):
+        super(App, self).__init__(master, *args, **kw)
         self.master = master
         self.master.withdraw()
         self.title("Janela")
