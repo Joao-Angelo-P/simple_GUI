@@ -30,6 +30,6 @@ f = Frame(b)
 f.pack()
 a = Label_ex(f, text="Widget")
 a.pack()
-print(a) # .!toplevel.!frame.!label
+print(a) # .!toplevel.!frame.!label --> Tk(Parent) > Toplevel(Parent) > Frame(Parent) > Label_ex
 
 master.destroy()
