@@ -21,5 +21,6 @@ f.pack()
 a = Label_ex(f, text="Widget")
 a.pack()
 print(a) # Tk(Parent) > Toplevel(Parent) > Frame(Parent) > Label_ex
+print(a.__str__.__name__) # modificar, confirmando que passa a referencia do função decoradora.
 
 master.destroy()
