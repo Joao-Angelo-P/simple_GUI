@@ -1,5 +1,5 @@
 import tkinter as tk
-from typing import Optional
+from typing import Optional, NamedTuple
 
 
 # implementar extração de dados e
