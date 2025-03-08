@@ -44,8 +44,10 @@ def result(w, e=None):
         list_s.insert(index+1, ')/100')
         list_s[index+2] = '*'
         s = ''.join(list_s)
-        
-    w.set(eval(s))
+    try:   
+        w.set(eval(s))
+    except SyntaxError:
+        w.set("Error")
 
 frame_bottom = frame(root, BOTTOM)
 button(frame_bottom, "=", LEFT, command=lambda w=display: result(w), bg="red", fg="white")
